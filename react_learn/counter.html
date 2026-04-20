@@ -1,0 +1,189 @@
+// Javascript tasks that can be easily converted to react
+// 1. Create a counter with increase and decrease buttons
+// 2. Toggle visibility of text when button is clicked(hide and show) 3. Take input from the user and display it in the
+console
+// 4. Add two numbers entered by user
+// 5. Todo list: add items and display them using list
+// 6. Count characters in input field
+// 7. Filter items based in search input (use .filter and list)
+// 8. Generate random numbers on button click
+// 9. Check if input is empty before submit
+// 10. Switch between light and dark mode.
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="~width=device-width, initial-scale=1.0">
+    <title>Functionalities</title>
+    <style>
+        body {
+            transition: 0.3s;
+        }
+
+        .dark {
+            background-color: #121212;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h1>Counter: <span id="count">0 </span></h1>
+
+    <button onclick="increase()">Increase</button>
+    <button onclick="decrease()">Decrease</button>
+
+
+    <h1> Toogle Visibility</h1>
+    <p id="text">This is some text that can be toggled.</p>
+    <button onclick="toggleText()">Toggle Text</button>
+
+
+    <h1> Input to Console</h1>
+    <input type="text" id="userInput" placeholder="Type something...">
+    <button onclick="displayInput()">Display in Console</button>
+
+    <h1> Add Two Numbers</h1>
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+    <button onclick="addNumbers()">Add Numbers</button>
+    <p id="result"></p>
+
+    <h2>5. Todo List</h2>
+    <input type="text" id="todoInput">
+    <button onclick="addTodo()">Add</button>
+    <ul id="todoList"></ul>
+
+    <hr>
+
+    <h2>6. Character Count</h2>
+    <input type="text" id="charInput" oninput="countChars()">
+    <p>Characters: <span id="charCount">0</span></p>
+
+    <hr>
+
+    <h2>7. Filter List</h2>
+    <ul id="filterList"></ul>
+
+    <hr>
+
+    <h2>8. Random Number</h2>
+    <button onclick="generateRandom()">Generate</button>
+    <p id="randomNumber"></p>
+
+    <hr>
+
+    <h2>9. Check Empty Input</h2>
+    <input type="text" id="checkInput" placeholder="Enter something...">
+    <button onclick="checkEmpty()">Submit</button>
+
+    <hr>
+
+    <h2>10. Dark Mode</h2>
+    <button onclick="toggleMode()">Toggle Mode</button>
+
+    <script>
+        let count = 0;
+        function increase() {
+            count++;
+            document.getElementById("count").innerText = count;
+
+        }
+        function decrease() {
+            count--;
+            document.getElementById("count").innerText = count;
+        }
+
+        function toggleText() {
+            let text = document.getElementById("text");
+            if (text.style.display === "none") {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+
+        function displayInput() {
+            let input = document.getElementById("userInput").value;
+            console.log(input);
+        }
+
+        function addNumbers() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let sum = num1 + num2;
+            document.getElementById("result").innerText = "Result: " + sum;
+        }
+
+        function addTodo() {
+            let todoInput = document.getElementById("todoInput").value;
+            let todoList = document.getElementById("todoList");
+            let li = document.createElement("li");
+            li.innerText = todoInput;
+            todoList.appendChild(li);
+        }
+
+        // 5. Todo List
+        function addTodo() {
+            let input = document.getElementById("todoInput");
+            let li = document.createElement("li");
+            li.innerText = input.value;
+            document.getElementById("todoList").appendChild(li);
+            input.value = "";
+        }
+
+        // 6. Character Count
+        function countChars() {
+            let val = document.getElementById("charInput").value;
+            document.getElementById("charCount").innerText = val.length;
+        }
+
+        // 7. Filter Items
+        let items = ["Apple", "Banana", "Mango", "Orange"];
+        let filterList = document.getElementById("filterList");
+
+        function displayItems(list) {
+            filterList.innerHTML = "";
+            list.forEach(item => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                filterList.appendChild(li);
+            });
+        }
+
+        displayItems(items);
+
+        function filterItems() {
+            let search = document.getElementById("searchInput").value.toLowerCase();
+            let filtered = items.filter(item => item.toLowerCase().includes(search));
+            displayItems(filtered);
+        }
+
+        function generateRandom() {
+            let num = Math.floor(Math.random() * 100);
+            document.getElementById("randomNumber").innerText = num;
+        }
+        // 9. Check Empty Input
+        function checkEmpty() {
+            let val = document.getElementById("checkInput").value;
+            if (val.trim() === "") {
+                alert("Input is empty!");
+            } else {
+                alert("Submitted: " + val);
+            }
+        }
+
+        // 10. Dark Mode
+        function toggleMode() {
+            document.body.classList.toggle("dark");
+        }
+
+    </script>
+</body>
+
+</html>
