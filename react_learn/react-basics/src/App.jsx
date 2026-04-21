@@ -4,6 +4,141 @@ import Counter  from "./Counter";
 import Toggle  from "./Counter";
 import inputConsole from "./Counter";
 import Calculator from "./Counter";
+import Clock from "./Clock";
+
+function Navigate() {
+   const open = (name,url) =>{
+    alert(`Welcome to ${name}`);
+    window.location.href = url;
+   };
+   return(
+    <div>
+        <button onClick= {() => open("Google", "https://www.google.com")}>Google</button>
+        <button onClick = {() => window.open("https://www.google.com", "_blank")}>Google</button>
+        <button onClick= {() => open("Facebook", "https://www.facebook.com")}>Facebook</button>
+        <button onClick= {() => open("Instagram", "https://www.instagram.com")}>Instagram</button>
+    </div>
+   );
+}
+
+function App() {
+    return (
+        <div>
+            <Navigate />
+            <Counter />
+            <Clock />
+            <DisableButton />
+            <Form />
+            <Timer />
+
+        </div>
+       
+    );
+}   
+export default App;
+
+function DisableButton() {
+    const [disabled, setDisabled] = useState(false);
+    return (
+        <div>
+            <button onClick={() => setDisabled(true)} disabled={disabled}>
+                Click to Disable
+            </button>
+        </div>
+    );
+}
+
+
+function Form(){
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [show,setShow] = useState("false");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Name: ", name);
+        console.log("Email: ", email);
+        console.log("Password: ", password);
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input  type ="text" value ={name} 
+            placeholder="enter name" 
+            onChange={(e)=> setName(e.target.value)}  
+            />
+            <input 
+                type="email" 
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input type={show ? "text": "password"}
+                placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)}
+             />
+             <button onClick={() => setShow(!show)}>
+                {show ? "Hide Password" : "Show Password"}
+             </button>
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+
+function Timer() {
+  const [time, setTime] = useState(10);
+
+  const startTimer = () => {
+    let counter = 10;
+
+    const interval = setInterval(() => {
+      counter--;
+
+      if (counter < 0) {
+        clearInterval(interval);
+        setTime("Time's up!");
+      } else {
+        setTime(counter);
+      }
+    }, 1000);
+  };
+
+  return (
+    <div>
+      <button onClick={startTimer}>Start Timer</button>
+      <h2>{time}</h2>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function App() {
 //     const name = "React Basics";
@@ -105,15 +240,15 @@ import Calculator from "./Counter";
 // }
 // export default App;
 
-function App() {
-    return (
-        <div>
-            {/* <Counter /> */}
-            {/* <Toggle /> */}
-            {/* <inputConsole /> */}
-            <Calculator />
-        </div>
+// function App() {
+//     return (
+//         <div>
+//             {/* <Counter /> */}
+//             {/* <Toggle /> */}
+//             {/* <inputConsole /> */}
+//             <Calculator />
+//         </div>
        
-    );
-}   
-export default App;
+//     );
+// }   
+// export default App;

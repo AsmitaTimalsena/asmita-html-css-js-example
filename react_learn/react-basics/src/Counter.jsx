@@ -1,16 +1,32 @@
 import { useState } from "react";
 
-// function Counter() {
-//     const [count, setCount] = useState(0);
-//     return (
-//         <div>
-//             <p>Count: {count}</p>
-//             <button onClick={() => setCount(count + 1)}>Increment</button>
-//             <button onClick={() => setCount(count - 1)}>Decrement</button>
-//         </div>
-//     );
-// }
-// export default Counter;
+function Counter() {
+    const [count, setCount] = useState(0);
+    return (
+        <div>
+            <p>Button Clicked Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Click Button</button>
+        </div>
+    );
+}
+export default Counter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function Toggle() {
 //     const [show, setShow] = useState(true);
@@ -33,15 +49,15 @@ import { useState } from "react";
 // export default inputConsole;
 
 
-function Calculator() {
-    const [a, setA] = useState(0);
-    const [b, setB] = useState(0);
-    return(
-        <div>
-            <input type="number" onChange={(e) => setA(Number(e.target.value))} />
-            <input type="number" onChange={(e) => setB(Number(e.target.value))} />
-            <p>Result: {a + b}</p>
-        </div>
-    );
-}
-export default Calculator;
+// function Calculator() {
+//     const [a, setA] = useState(0);
+//     const [b, setB] = useState(0);
+//     return(
+//         <div>
+//             <input type="number" onChange={(e) => setA(Number(e.target.value))} />
+//             <input type="number" onChange={(e) => setB(Number(e.target.value))} />
+//             <p>Result: {a + b}</p>
+//         </div>
+//     );
+// }
+// export default Calculator;
